@@ -21,5 +21,7 @@
 
 # Basic Rust program
 
+!!!rust-1.rs
+
     !rust
     blah blah
