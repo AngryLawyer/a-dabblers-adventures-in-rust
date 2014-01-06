@@ -19,4 +19,4 @@ with open("slides.md") as f:
             output.append(import_line(line))
         else:
            output.append(line)
-    print output
+    print "\n".join(output)
