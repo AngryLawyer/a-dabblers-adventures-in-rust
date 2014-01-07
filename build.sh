@@ -8,7 +8,7 @@ then
     exit 1
 fi
 
-env/bin/python apply_snippets.py > applied.md 
+python apply_snippets.py > applied.md 
 
 if [ $? -ne 0 ]
 then
@@ -17,7 +17,7 @@ then
     exit 1
 fi
 
-env/bin/landslide config.cfg -i
+landslide config.cfg -i
 
 if [ $? -ne 0 ]
 then
