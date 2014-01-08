@@ -12,6 +12,7 @@
 * Safe. Lovely, lovely types and pointer lifetimes guard against a lot of errors.
 
 ---
+
 # Where can I get it?
 * Prebuilt binaries are available at http://www.rust-lang.org/
 * Source code is available from GitHub https://github.com/mozilla/rust
@@ -23,5 +24,19 @@
 
 !!!rust-1.rs
 
-    !rust
-    blah blah
+* It's very C-like. Curly braces.
+
+---
+
+# Variables
+
+!!!rust-2.rs
+
+---
+
+# Expressions
+
+!!!rust-3.rs
+
+* Everything's an expression, and therefore typed.
+* 
