@@ -1,4 +1,5 @@
 fn main () {
+//---START
     struct Llama {
         hairiness: uint
     };
@@ -20,4 +21,5 @@ fn main () {
     //You can borrow pointers as long as they expire before the owned pointer
     let borrowed_llama = &another_llama;
     //The compiler keeps check and will shout at you if you get it wrong.
+//---END
 }

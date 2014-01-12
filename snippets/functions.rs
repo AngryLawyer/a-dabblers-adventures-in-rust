@@ -1,4 +1,4 @@
-//----START
+//---START
 //Functions must specify the types they use
 fn increment (a: uint) -> uint {
     a + 1

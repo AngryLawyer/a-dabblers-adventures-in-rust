@@ -20,17 +20,27 @@
 
 ---
 
-# Basic Rust program
+# The traditional Hello World 
 
 !!!intro.rs
 
-* It's very C-like. Curly braces.
+* It's very C-like. Curly braced.
+* Semicolons aren't needed in a lot of cases. They imply 'new statement' rather than end of line, so if you want your function to return a value, you leave it off (or use the return keyword)
+* It uses macros in places. Printing to the console is a macro.
 
 ---
 
-# Variables
+# The basics
 
-!!!basics.rs
+!!!basics.rs:1
+
+---
+
+!!!basics.rs:2
+
+---
+
+!!!basics.rs:3
 
 ---
 
@@ -53,7 +63,3 @@
 ---
 
 !!!functional.rs
-
----
-
-!!!functional2.rs
