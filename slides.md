@@ -22,7 +22,7 @@
 
 # Basic Rust program
 
-!!!rust-1.rs
+!!!intro.rs
 
 * It's very C-like. Curly braces.
 
@@ -30,13 +30,30 @@
 
 # Variables
 
-!!!rust-2.rs
+!!!basics.rs
 
 ---
 
 # Expressions
 
-!!!rust-3.rs
+!!!expressions.rs
 
-* Everything's an expression, and therefore typed.
-* 
+---
+
+!!!functions.rs
+
+---
+
+!!!datatypes.rs
+
+---
+
+!!!pointers.rs
+
+---
+
+!!!functional.rs
+
+---
+
+!!!functional2.rs
