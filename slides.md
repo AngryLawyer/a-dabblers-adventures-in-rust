@@ -88,7 +88,15 @@ We get around the inflexibility of typed functions using generics.
 
 # Pointers
 
-!!!pointers.rs
+Pointers are a key part of understanding Rust
+
+!!!pointers.rs:1
+
+---
+
+# Pointers
+
+!!!pointers.rs:2
 
 ---
 
