@@ -100,4 +100,18 @@ Pointers are a key part of understanding Rust
 
 ---
 
-!!!functional.rs
+# Algebraic data types
+
+!!!functional.rs:1
+
+---
+
+# No Nulls! 
+
+!!!functional.rs:2
+
+---
+
+# Functional fun 
+
+!!!functional.rs:3
