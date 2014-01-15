@@ -1,5 +1,5 @@
 # A Dabbler's Adventures in Rust
-## Tony Aldridge
+## Tony Aldridge - @angry_lawyer
 ## Functional Brighton
 ## 21st January 2014
 
@@ -7,7 +7,9 @@
 
 # What is Rust?
 ## (Baby don't hurt me, don't hurt me, no more)
+
 PROVIDE PICTURE
+
 * New programming language developed by Mozilla
 * Multi-paradigm. Functional, imperative, object-oriented, whenever it makes sense.
 * Low-level. Targets the same problem-space as C and C++
@@ -16,9 +18,10 @@ PROVIDE PICTURE
 ---
 
 # Where can I get it?
-* Prebuilt binaries are available at http://www.rust-lang.org/
-* Source code is available from GitHub https://github.com/mozilla/rust
-* You can also use Aptitude to install nightly builds https://launchpad.net/~hansjorg/+archive/rust
+
+* Prebuilt binaries are available at <http://www.rust-lang.org/>
+* Source code is available from GitHub <https://github.com/mozilla/rust>
+* You can also use Aptitude to install nightly builds <https://launchpad.net/~hansjorg/+archive/rust>
 
 ---
 
@@ -35,17 +38,25 @@ PROVIDE PICTURE
 
 Rust is staticly typed, but uses type inference to make sure we don't end up with Java-style mouthfuls like 'Integer myInteger = new Integer(5)'
 
-!!!basics.rs:1
+!!!basics.rs:1-1
 
 You can specify the type if you want, which comes in handy sometimes.
+
+!!!basics.rs:1-2
 
 ---
 
 # No automatic type casts
 
-!!!basics.rs:2
+Rust, in order to protect ourselves from accidental casts, makes it so you have to manually convert it
+
+!!!basics.rs:2-1
+
 
 As you can see, if we want to multiply an int by a float, we have to make sure that it typechecks.
+
+!!!basics.rs:2-2
+
 
 ---
 
@@ -53,14 +64,26 @@ As you can see, if we want to multiply an int by a float, we have to make sure t
 
 As Rust is designed with concurrency as a goal, everything's immutable by default.
 
-!!!basics.rs:3
+!!!basics.rs:3-1
+
+We have to explicitly make thing mutable if we want to change their value.
+
+!!!basics.rs:3-2
+
+Variables can be shadowed by defining them again
+
+!!!basics.rs:3-3
 
 ---
 
 # Expressions
-Everything's an expression in Rust. If you put a semicolon after it, it'll return void instead.
+Everything's an expression in Rust. If you put a semicolon after it, it'll return void instead. This makes for some fun, like returning values from 'if' statements.
 
-!!!expressions.rs
+!!!expressions.rs:1
+
+We also get lovely, lovely pattern matching.
+
+!!!expressions.rs:2
 
 ---
 

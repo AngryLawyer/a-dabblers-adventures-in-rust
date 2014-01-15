@@ -1,19 +1,16 @@
 fn main() {
     let b = 5;
-//---START
-    //As everything's an expression, we get some fun results
-    //If statements:
-
+//---START:1
     let a = if (b > 0) {
         "Positive"
     } else {
         "Negative"
     };
-
-    //We also get pattern matching
+//---END:1
+//---START:2
     let c = match b {
         3 | 5 => "Lol",
         _ => "Not lol"
     };
-//---END
+//---END:2
 }
