@@ -114,4 +114,31 @@ Pointers are a key part of understanding Rust
 
 # Functional fun 
 
-!!!functional.rs:3
+So, let's do the classic of Functional Programming.
+Define a list type.
+
+!!!functional.rs:tut1
+
+It's recursively defined as data plus an owned pointer to itself, or to a terminal
+
+---
+
+# Functional fun 
+
+So, now we can define a list!
+
+!!!functional.rs:tut2
+
+This function borrows the original list, so the original remains useful. In the pattern match, we have to specify that we're borrowing rather than moving once again, otherwise no compile.
+
+We then have to dereference the borrowed pointer with a * otherwise it's a double borrow
+
+---
+
+# Functional fun 
+
+But why would we hardcode what this can do? We can take a first class function, and also make it generic across all types!
+
+!!!functional.rs:tut3
+
+Of course, Rust's standard library has already defined all of these useful things.

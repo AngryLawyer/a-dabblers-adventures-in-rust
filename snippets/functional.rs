@@ -32,14 +32,14 @@ fn main() {
         None => "Divide by zero"
     };
 //---END:2
-//---START:3
-    //So, let's do the classic of Functional Programming. Define a list type.
+//---START:tut1
     enum List<T> {
         Node(T,~List<T>),
         Terminal
     };
 
-    //So, now we can define a list!
+//---END:tut1
+//---START:tut2
     let list = ~Node(1, ~Node(2, ~Node(3, ~Terminal)));
 
     //And now we can write functions to fiddle with it
@@ -54,7 +54,9 @@ fn main() {
         }
     }
 
-    //But wait, doubling a list seems a little silly when we could write a Map function!
+    let squared = double_list(list);
+//---END:tut2
+//---START:tut3
     fn map<T, U>(item: &List<T>, action: |&T| -> U) -> ~List<U> {
         match item {
             &Node(ref value, ref next) => {
@@ -68,7 +70,5 @@ fn main() {
 
     //And now we can use it as normal
     let squared = map(list, |value: &uint| { *value * *value });
-
-    //Of course, in real Rust code, you'd use the built in types rather than redefine these basics
-//---END:3
+//---END:tut3
 }
