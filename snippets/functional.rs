@@ -1,23 +1,20 @@
 fn main() {
-//---START:1
-    //We can get algerbraic data types!
+//---START:1-1
     enum MaybeInt {
         SomeInt(int),
         NoneInt
     };
-    //As the language doesn't have nulls,
-    //We need a way to represent an empty response.
-    
-    //Something more generic:
+
+    let maybe_number = SomeInt(5);
+    let no_number = NoneInt;
+//---END:1-1
+//---START:1-2
     enum Option<T> {
         Some(T),
         None
     };
-//---END:1
+//---END:1-2
 //---START:2
-    //Now, when we define a function,
-    //We can mark that it might not give us anything back
-    
     fn safe_divide(a: int, b: int) -> Option<f64> {
         if b == 0 {
             None
@@ -37,12 +34,10 @@ fn main() {
         Node(T,~List<T>),
         Terminal
     };
-
 //---END:tut1
 //---START:tut2
     let list = ~Node(1, ~Node(2, ~Node(3, ~Terminal)));
 
-    //And now we can write functions to fiddle with it
     fn double_list(item: &List<uint>) -> ~List<uint> {
         match item {
             &Node(ref value, ref next) => {
@@ -53,7 +48,6 @@ fn main() {
             }
         }
     }
-
     let squared = double_list(list);
 //---END:tut2
 //---START:tut3

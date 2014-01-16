@@ -1,7 +1,10 @@
 # A Dabbler's Adventures in Rust
-## Tony Aldridge - @angry_lawyer
-## Functional Brighton
-## 21st January 2014
+
+# Tony Aldridge - @angry_lawyer
+
+# Functional Brighton
+
+# 21st January 2014
 
 ---
 
@@ -156,11 +159,21 @@ We can also create borrowed pointers, which can only legally exist while the ori
 
 # Algebraic data types
 
-!!!functional.rs:1
+Algebraic data types are one of the must useful features in Rust.
+
+!!!functional.rs:1-1
+
+Here, we have a type that can either be boxing an int, or representing nothing. We can also use generics to make it a bit more useful.
+
+!!!functional.rs:1-2
 
 ---
 
-# No Nulls! 
+# No Nulls!
+
+Rust doesn't allow us to use Nulls at all; they're a common source of frustration and error in languages that have them.
+
+Instead, we use the Option type, as we've defined it (it's also a built-in, so real Rust code doesn't need to bother defining it)
 
 !!!functional.rs:2
 
@@ -196,3 +209,18 @@ But why would we hardcode what this can do? We can take a first class function, 
 !!!functional.rs:tut3
 
 Of course, Rust's standard library has already defined all of these useful things.
+
+---
+
+# What I've not covered
+
+Rust has a lot of other awesome features that I barely understand.
+
+* Defining lifetimes, so you can return borrowed pointers
+* Traits, for object oriented programming, and attaching methods to any type you want.
+* Traits as predicates on types
+* Concurrency
+
+---
+
+#Any questions?
