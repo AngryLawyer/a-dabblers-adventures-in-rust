@@ -1,31 +1,25 @@
 fn main () {
 //---START:1
-    struct Llama {
-        hairiness: uint
+    struct Kitty {
+        fluffiness: uint
     };
 
-    fn new_llama(hairiness: uint) -> Llama {
-        Llama{hairiness: hairiness}
+    fn new_kitty(fluffiness: uint) -> Kitty {
+        Kitty{fluffiness: fluffiness}
     };
 
-    //Anything unadorned is allocated on the stack.
-    //It is freed when it falls out of scope
-    let hose = new_llama(2);
+    let buffcat = new_kitty(2); //On the stack
 //---END:1
-//---START:2
-    //We can define Owned pointers
-    //allocated on the heap, and freed when
-    //the pointer goes out of scope
-    let ferdinand = ~new_llama(3);
+//---START:2-1
+    let tom = ~new_kitty(3);
     //They're guaranteed unique - you can move them
-    let another_llama = ferdinand;
-    //The following won't compile
-    //let fluff = ferdinand.hairiness;
-
-    //You can borrow pointers
-    //as long as they expire before the owned pointer
-    let borrowed_llama = &another_llama;
-    //The compiler keeps check
-    //and will shout at you if you get it wrong.
-//---END:2
+    let moved_tom = tom;
+    //The following won't compile, as it no longer lives in that slot
+    //let fluff = tom.fluffiness;
+//---END:2-1
+//---START:2-2
+    let borrowed_kitty = &buffcat;
+    //We can still use the original
+    let is_the_same = borrowed_kitty.fluffiness == buffcat.fluffiness;
+//---END:2-2
 }

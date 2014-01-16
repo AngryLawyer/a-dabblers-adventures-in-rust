@@ -91,19 +91,44 @@ We also get lovely, lovely pattern matching.
 
 Functions are one of the places you have to be explicit with types
 
-!!!functions.rs:1
+!!!functions.rs:1-1
+
+As you can see, the result of the last expresison is returned. You can force a return with the 'return' keyword, too.
+
+---
+
+# Functions
+
+Functions are first-class, so we can pass them in to others, and return them.
+Here, we're taking a tuple of three uints and a function that acts on a uint, and returning a three-tuple with that function applied to all its members
+
+!!!functions.rs:1-2
 
 ---
 
 # Generics
 
-We get around the inflexibility of typed functions using generics.
+Our previous function was a bit naff - we can only operate on three-tuples made of uints, and they always output the same type. There must be a better way...
 
-!!!functions.rs:2
+In step generics to save the day!
+
+!!!functions.rs:2-1
+
+Here, we provide type parameters for the input and output, so they can be different, and we don't really care what they are as long as they match what the function we're passing wants. The compler works out what we need.
+
+---
+
+# Generics
+
+So, lets see it in action!
+
+!!!functions.rs:2-2
 
 ---
 
 # Basic data types
+
+Rust gives us lots of lovely ways of structuring data. Enter types.
 
 !!!datatypes.rs
 
@@ -111,7 +136,7 @@ We get around the inflexibility of typed functions using generics.
 
 # Pointers
 
-Pointers are a key part of understanding Rust
+Pointers are a key part of understanding Rust. By default, everything goes on the stack, and therefore is freed after it falls out of scope.
 
 !!!pointers.rs:1
 
@@ -119,7 +144,13 @@ Pointers are a key part of understanding Rust
 
 # Pointers
 
-!!!pointers.rs:2
+We can define Owned pointers allocated on the heap, and freed when the pointer goes out of scope
+
+!!!pointers.rs:2-1
+
+We can also create borrowed pointers, which can only legally exist while the original does, making it impossible to accidentally dereference a cleaned-up object. The compiler makes sure this is all valid.
+
+!!!pointers.rs:2-2
 
 ---
 

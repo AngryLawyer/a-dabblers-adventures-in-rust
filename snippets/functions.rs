@@ -1,32 +1,30 @@
 fn main() {
-//---START:1
+//---START:1-1
     //Functions must specify the types they use
     fn increment (a: uint) -> uint {
         a + 1
     };
 
-    //Functions are first class. Return the last value in them
+    let a = 1;
+    let b = increment(a);
+//---END:1-1
+//---START:1-2
     fn munge_triple((a, b, c): (uint, uint, uint), 
         munger: |a: uint| -> uint) -> (uint, uint, uint) {
         (munger(a), munger(b), munger(c))
     };
-    let a = 1;
-    let b = increment(a);
 
     let c = munge_triple((1, 2, 3), increment);
     //There's also shorthand
     let c = munge_triple((1, 2, 3), |a| a+1);
-//---END:1
-//---START:2
-    //That function's a bit naff, it only takes uints.
-    //If only there was another way...
+//---END:1-2
+//---START:2-1
     fn scrunge_triple<T, U>((a, b, c): (T, T, T),
         munger: |a: T| -> U) -> (U, U, U) {
        (munger(a), munger(b), munger(c))
     };
-
-    //Now, the compuler will work out what types the function wants
-
+//---END:2-1
+//---START:2-2
     let a = scrunge_triple((1, 2, 3), |a| a + 1);
     //Success, because T and U are both substituted with uint
 
@@ -37,5 +35,5 @@ fn main() {
 
     //Fails the typecheck as all the tuple elements
     //were marked as the same
-//---END:2
+//---END:2-2
 }
