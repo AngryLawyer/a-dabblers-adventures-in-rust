@@ -1,11 +1,11 @@
 fn main() {
 //---START
     //We have structs, which are like their C equivalent.
-    struct llama {
+    struct Llama {
         hairiness: uint
     };
 
-    let jose = llama{hairiness: 5};
+    let jose = Llama{hairiness: 5};
 
     //We also have tuples
     let tuple = (5, "lol", 7);
@@ -21,6 +21,5 @@ fn main() {
     };
 
     let myColor = Red;
-
 //---END
 }
