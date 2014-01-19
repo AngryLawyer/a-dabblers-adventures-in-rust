@@ -9,7 +9,7 @@
 ---
 
 # What is Rust?
-## (Baby 't hurt me, don't hurt me, no more)
+## (Baby don't hurt me, don't hurt me, no more)
 
 * New programming language developed by Mozilla
 * Multi-paradigm. Functional, imperative, object-oriented, whenever it makes sense.
