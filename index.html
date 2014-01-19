@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<!--
+  Copyright 2010 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+  Original slides: Marcin Wichary (mwichary@google.com)
+  Modifications: Ernest Delgado (ernestd@google.com)
+                 Alex Russell (slightlyoff@chromium.org)
+
+  landslide modifications: Adam Zapletal (adamzap@gmail.com)
+                           Nicolas Perriault (nperriault@gmail.com)
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>A Dabbler's Adventures in Rust</title>
+    <!-- Styles -->
+    
+    <link rel="stylesheet" media="print" href="file:///home/tony/Projects/a-dabblers-adventures-in-rust/env/local/lib/python2.7/site-packages/landslide/themes/default/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="file:///home/tony/Projects/a-dabblers-adventures-in-rust/theme/css/screen.css">
+    
+    
+    <!-- /Styles -->
+    <!-- Javascripts -->
+    
+    <script type="text/javascript" src="file:///home/tony/Projects/a-dabblers-adventures-in-rust/env/local/lib/python2.7/site-packages/landslide/themes/default/js/slides.js"></script>
+    
+    
+    <!-- /Javascripts -->
+</head>
+<body>
+  <div id="blank"></div>
+  <div class="presentation">
+    <div id="current_presenter_notes">
+      <div id="presenter_note"></div>
+    </div>
+    <div class="slides">
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>A Dabbler's Adventures in Rust</h1></header>
+            
+            
+            <section><h1>Tony Aldridge - @angry_lawyer</h1>
+<h1>Functional Brighton</h1>
+<h1>21st January 2014</h1></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              1/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>What is Rust?</h1></header>
+            
+            
+            <section><h2>(Baby 't hurt me, don't hurt me, no more)</h2>
+<ul>
+<li>New programming language developed by Mozilla</li>
+<li>Multi-paradigm. Functional, imperative, object-oriented, whenever it makes sense.</li>
+<li>Low-level. Targets the same problem-space as C and C++</li>
+<li>Safe. Lovely, lovely types and pointer lifetimes guard against a lot of errors.</li>
+</ul>
+<p><img alt="rust" src="file:///home/tony/Projects/a-dabblers-adventures-in-rust/images/logo.png" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              2/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Where can I get it?</h1></header>
+            
+            
+            <section><ul>
+<li>Prebuilt binaries are available at <a href="http://www.rust-lang.org/">http://www.rust-lang.org/</a></li>
+<li>Source code is available from GitHub <a href="https://github.com/mozilla/rust">https://github.com/mozilla/rust</a></li>
+<li>You can also use Aptitude to install nightly builds <a href="https://launchpad.net/~hansjorg/+archive/rust">https://launchpad.net/~hansjorg/+archive/rust</a></li>
+<li>The code examples here should compile cleanly against 0.9, but are tested against the head of the Master branch of the project, so if you're going to follow along, you might find slight differences.</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              3/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>The traditional Hello World</h1></header>
+            
+            
+            <section><div class="highlight"><pre><span class="lineno">1</span> <span class="k">use</span> <span class="n">std</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">stdio</span><span class="o">::</span><span class="n">println</span><span class="p">;</span>
+<span class="lineno">2</span> 
+<span class="lineno">3</span> <span class="k">fn</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="lineno">4</span>     <span class="n">println</span><span class="p">(</span><span class="s">&quot;Hello!&quot;</span><span class="p">)</span>
+<span class="lineno">5</span> <span class="p">}</span>
+</pre></div>
+
+<ul>
+<li>It's very C-like. Curly braced. Imported packages at the top of the page.</li>
+<li>Semicolons aren't needed in a lot of cases. They imply 'new statement' rather than end of line, so if you want your function to return a value, you leave it off (or use the return keyword).</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              4/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>The basics</h1></header>
+            
+            
+            <section><p>Rust is staticly typed, but uses type inference to make sure we don't end up with Java-style mouthfuls like 'Integer myInteger = new Integer(5)'</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="m">5</span> <span class="o">+</span> <span class="m">4</span><span class="p">;</span>
+<span class="lineno">2</span>     <span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="m">2</span><span class="p">;</span>
+</pre></div>
+
+<p>You can specify the type if you want, which comes in handy sometimes.</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">let</span> <span class="n">c</span><span class="o">:</span> <span class="k">int</span> <span class="o">=</span> <span class="m">7</span><span class="p">;</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              5/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>No automatic type casts</h1></header>
+            
+            
+            <section><p>Rust, in order to protect ourselves from accidental casts, makes it so you have to manually convert it</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="m">2</span><span class="p">;</span>
+<span class="lineno">2</span>     <span class="cm">/*</span>
+<span class="lineno">3</span> <span class="cm">    let b = a * 0.1; //Won&#39;t compile</span>
+<span class="lineno">4</span> <span class="cm">    */</span>
+</pre></div>
+
+<p>As you can see, if we want to multiply an int by a float, we have to make sure that it typechecks.</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="k">as</span> <span class="k">f64</span> <span class="o">*</span> <span class="m">0.1</span><span class="p">;</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              6/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Immutability</h1></header>
+            
+            
+            <section><p>As Rust is designed with concurrency as a goal, everything's immutable by default.</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="m">1.0</span><span class="p">;</span>
+<span class="lineno">2</span>     <span class="cm">/*</span>
+<span class="lineno">3</span> <span class="cm">    a += 1.0 // Won&#39;t compile</span>
+<span class="lineno">4</span> <span class="cm">    */</span>
+</pre></div>
+
+<p>We have to explicitly make thing mutable if we want to change their value.</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">let</span> <span class="k">mut</span> <span class="n">a</span> <span class="o">=</span> <span class="m">5</span><span class="p">;</span>
+<span class="lineno">2</span>     <span class="n">a</span> <span class="o">+=</span> <span class="m">1</span><span class="p">;</span>
+</pre></div>
+
+<p>Variables can be shadowed by defining them again</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="m">1</span><span class="p">;</span>
+<span class="lineno">2</span>     <span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="m">5</span><span class="p">;</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              7/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Expressions</h1></header>
+            
+            
+            <section><p>Everything's an expression in Rust. If you put a semicolon after it, it'll return void instead. This makes for some fun, like returning values from 'if' statements.</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="k">if</span> <span class="p">(</span><span class="n">b</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">2</span>         <span class="s">&quot;Positive&quot;</span>
+<span class="lineno">3</span>     <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="lineno">4</span>         <span class="s">&quot;Negative&quot;</span>
+<span class="lineno">5</span>     <span class="p">};</span>
+</pre></div>
+
+<p>We also get lovely, lovely pattern matching.</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">let</span> <span class="n">c</span> <span class="o">=</span> <span class="k">match</span> <span class="n">b</span> <span class="p">{</span>
+<span class="lineno">2</span>         <span class="m">3</span> <span class="o">|</span> <span class="m">5</span> <span class="o">=&gt;</span> <span class="s">&quot;Lol&quot;</span><span class="p">,</span>
+<span class="lineno">3</span>         <span class="n">_</span> <span class="o">=&gt;</span> <span class="s">&quot;Not lol&quot;</span>
+<span class="lineno">4</span>     <span class="p">};</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              8/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Functions</h1></header>
+            
+            
+            <section><p>Functions are one of the places you have to be explicit with types</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="c1">//Functions must specify the types they use</span>
+<span class="lineno">2</span>     <span class="k">fn</span> <span class="n">increment</span> <span class="p">(</span><span class="n">a</span><span class="o">:</span> <span class="k">uint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">uint</span> <span class="p">{</span>
+<span class="lineno">3</span>         <span class="n">a</span> <span class="o">+</span> <span class="m">1</span>
+<span class="lineno">4</span>     <span class="p">};</span>
+<span class="lineno">5</span> 
+<span class="lineno">6</span>     <span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="m">1</span><span class="p">;</span>
+<span class="lineno">7</span>     <span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="n">increment</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</pre></div>
+
+<p>As you can see, the result of the last expresison is returned. You can force a return with the 'return' keyword, too.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              9/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Functions</h1></header>
+            
+            
+            <section><p>Functions are first-class, so we can pass them in to others, and return them.
+Here, we're taking a tuple of three uints and a function that acts on a uint, and returning a three-tuple with that function applied to all its members</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">fn</span> <span class="n">munge_triple</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span><span class="o">:</span> <span class="p">(</span><span class="k">uint</span><span class="p">,</span> <span class="k">uint</span><span class="p">,</span> <span class="k">uint</span><span class="p">),</span> 
+<span class="lineno">2</span>         <span class="n">munger</span><span class="o">:</span> <span class="o">|</span><span class="n">a</span><span class="o">:</span> <span class="k">uint</span><span class="o">|</span> <span class="o">-&gt;</span> <span class="k">uint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="k">uint</span><span class="p">,</span> <span class="k">uint</span><span class="p">,</span> <span class="k">uint</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">3</span>         <span class="p">(</span><span class="n">munger</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">munger</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">munger</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="lineno">4</span>     <span class="p">};</span>
+<span class="lineno">5</span> 
+<span class="lineno">6</span>     <span class="k">let</span> <span class="n">c</span> <span class="o">=</span> <span class="n">munge_triple</span><span class="p">((</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="n">increment</span><span class="p">);</span>
+<span class="lineno">7</span>     <span class="c1">//There&#39;s also shorthand</span>
+<span class="lineno">8</span>     <span class="k">let</span> <span class="n">c</span> <span class="o">=</span> <span class="n">munge_triple</span><span class="p">((</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span> <span class="n">a</span><span class="o">+</span><span class="m">1</span><span class="p">);</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              10/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Generics</h1></header>
+            
+            
+            <section><p>Our previous function was a bit naff - we can only operate on three-tuples made of uints, and they always output the same type. There must be a better way...</p>
+<p>In step generics to save the day!</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">fn</span> <span class="n">scrunge_triple</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="o">&gt;</span><span class="p">((</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">)</span><span class="o">:</span> <span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">T</span><span class="p">),</span>
+<span class="lineno">2</span>         <span class="n">munger</span><span class="o">:</span> <span class="o">|</span><span class="n">a</span><span class="o">:</span> <span class="n">T</span><span class="o">|</span> <span class="o">-&gt;</span> <span class="n">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">U</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">3</span>        <span class="p">(</span><span class="n">munger</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">munger</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">munger</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="lineno">4</span>     <span class="p">};</span>
+</pre></div>
+
+<p>Here, we provide type parameters for the input and output, so they can be different, and we don't really care what they are as long as they match what the function we're passing wants. The compler works out what we need.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              11/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Generics</h1></header>
+            
+            
+            <section><p>So, lets see it in action!</p>
+<div class="highlight"><pre><span class="lineno"> 1</span>     <span class="k">let</span> <span class="n">a</span> <span class="o">=</span> <span class="n">scrunge_triple</span><span class="p">((</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span> <span class="n">a</span> <span class="o">+</span> <span class="m">1</span><span class="p">);</span>
+<span class="lineno"> 2</span>     <span class="c1">//Success, because T and U are both substituted with uint</span>
+<span class="lineno"> 3</span> 
+<span class="lineno"> 4</span>     <span class="k">let</span> <span class="n">b</span> <span class="o">=</span> <span class="n">scrunge_triple</span><span class="p">((</span><span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="o">|</span><span class="n">a</span><span class="o">|</span> <span class="n">a</span> <span class="k">as</span> <span class="k">f64</span> <span class="o">*</span> <span class="m">0.1</span><span class="p">);</span>
+<span class="lineno"> 5</span>     <span class="c1">//Success, because T is uint, and U is f64</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span>     <span class="c1">//let c = munge_triple(1, 2.0, 3), |a| a * 0.1);</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span>     <span class="c1">//Fails the typecheck as all the tuple elements</span>
+<span class="lineno">10</span>     <span class="c1">//were marked as the same</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              12/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Basic data types</h1></header>
+            
+            
+            <section><p>Rust gives us lots of lovely ways of structuring data. Enter types.</p>
+<div class="highlight"><pre><span class="lineno"> 1</span>     <span class="c1">//We have structs, which are like their C equivalent.</span>
+<span class="lineno"> 2</span>     <span class="k">struct</span> <span class="n">Llama</span> <span class="p">{</span>
+<span class="lineno"> 3</span>         <span class="n">hairiness</span><span class="o">:</span> <span class="k">uint</span>
+<span class="lineno"> 4</span>     <span class="p">};</span>
+<span class="lineno"> 5</span> 
+<span class="lineno"> 6</span>     <span class="k">let</span> <span class="n">jose</span> <span class="o">=</span> <span class="n">Llama</span><span class="p">{</span><span class="n">hairiness</span><span class="o">:</span> <span class="m">5</span><span class="p">};</span>
+<span class="lineno"> 7</span> 
+<span class="lineno"> 8</span>     <span class="c1">//We also have tuples</span>
+<span class="lineno"> 9</span>     <span class="k">let</span> <span class="n">tuple</span> <span class="o">=</span> <span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s">&quot;lol&quot;</span><span class="p">,</span> <span class="m">7</span><span class="p">);</span>
+<span class="lineno">10</span> 
+<span class="lineno">11</span>     <span class="c1">//And a typed list-like structure called vectors</span>
+<span class="lineno">12</span>     <span class="k">let</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="s">&quot;first&quot;</span><span class="p">,</span> <span class="s">&quot;second&quot;</span><span class="p">,</span> <span class="s">&quot;third&quot;</span><span class="p">];</span>
+<span class="lineno">13</span> 
+<span class="lineno">14</span>     <span class="c1">//Finally, we have enums, which we&#39;ll take a closer look at later</span>
+<span class="lineno">15</span>     <span class="k">enum</span> <span class="n">Colors</span> <span class="p">{</span>
+<span class="lineno">16</span>         <span class="n">Red</span><span class="p">,</span>
+<span class="lineno">17</span>         <span class="n">Blue</span><span class="p">,</span>
+<span class="lineno">18</span>         <span class="n">Green</span>
+<span class="lineno">19</span>     <span class="p">};</span>
+<span class="lineno">20</span> 
+<span class="lineno">21</span>     <span class="k">let</span> <span class="n">myColor</span> <span class="o">=</span> <span class="n">Red</span><span class="p">;</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              13/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Pointers</h1></header>
+            
+            
+            <section><p>Pointers are a key part of understanding Rust. By default, everything goes on the stack, and therefore is freed after it falls out of scope.</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">struct</span> <span class="n">Kitty</span> <span class="p">{</span>
+<span class="lineno">2</span>         <span class="n">fluffiness</span><span class="o">:</span> <span class="k">uint</span>
+<span class="lineno">3</span>     <span class="p">};</span>
+<span class="lineno">4</span> 
+<span class="lineno">5</span>     <span class="k">fn</span> <span class="n">new_kitty</span><span class="p">(</span><span class="n">fluffiness</span><span class="o">:</span> <span class="k">uint</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Kitty</span> <span class="p">{</span>
+<span class="lineno">6</span>         <span class="n">Kitty</span><span class="p">{</span><span class="n">fluffiness</span><span class="o">:</span> <span class="n">fluffiness</span><span class="p">}</span>
+<span class="lineno">7</span>     <span class="p">};</span>
+<span class="lineno">8</span> 
+<span class="lineno">9</span>     <span class="k">let</span> <span class="n">buffcat</span> <span class="o">=</span> <span class="n">new_kitty</span><span class="p">(</span><span class="m">2</span><span class="p">);</span> <span class="c1">//On the stack</span>
+</pre></div>
+
+<p><img alt="beanbag" src="file:///home/tony/Projects/a-dabblers-adventures-in-rust/images/cat-jumps-into-bean-bag.gif" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              14/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Pointers</h1></header>
+            
+            
+            <section><p>We can define Owned pointers allocated on the heap, and freed when the pointer goes out of scope</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">let</span> <span class="n">tom</span> <span class="o">=</span> <span class="o">~</span><span class="n">new_kitty</span><span class="p">(</span><span class="m">3</span><span class="p">);</span>
+<span class="lineno">2</span>     <span class="c1">//They&#39;re guaranteed unique - you can move them</span>
+<span class="lineno">3</span>     <span class="k">let</span> <span class="n">moved_tom</span> <span class="o">=</span> <span class="n">tom</span><span class="p">;</span>
+<span class="lineno">4</span>     <span class="c1">//The following won&#39;t compile, as it no longer lives in that slot</span>
+<span class="lineno">5</span>     <span class="c1">//let fluff = tom.fluffiness;</span>
+</pre></div>
+
+<p>We can also create borrowed pointers, which can only legally exist while the original does, making it impossible to accidentally dereference a cleaned-up object. The compiler makes sure this is all valid.</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">let</span> <span class="n">borrowed_kitty</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">buffcat</span><span class="p">;</span>
+<span class="lineno">2</span>     <span class="c1">//We can still use the original</span>
+<span class="lineno">3</span>     <span class="k">let</span> <span class="n">is_the_same</span> <span class="o">=</span> <span class="n">borrowed_kitty</span><span class="p">.</span><span class="n">fluffiness</span> <span class="o">==</span> <span class="n">buffcat</span><span class="p">.</span><span class="n">fluffiness</span><span class="p">;</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              15/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Algebraic data types</h1></header>
+            
+            
+            <section><p>Algebraic data types are one of the must useful features in Rust.</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">enum</span> <span class="n">MaybeInt</span> <span class="p">{</span>
+<span class="lineno">2</span>         <span class="n">SomeInt</span><span class="p">(</span><span class="k">int</span><span class="p">),</span>
+<span class="lineno">3</span>         <span class="n">NoneInt</span>
+<span class="lineno">4</span>     <span class="p">};</span>
+<span class="lineno">5</span> 
+<span class="lineno">6</span>     <span class="k">let</span> <span class="n">maybe_number</span> <span class="o">=</span> <span class="n">SomeInt</span><span class="p">(</span><span class="m">5</span><span class="p">);</span>
+<span class="lineno">7</span>     <span class="k">let</span> <span class="n">no_number</span> <span class="o">=</span> <span class="n">NoneInt</span><span class="p">;</span>
+</pre></div>
+
+<p>Here, we have a type that can either be boxing an int, or representing nothing. We can also use generics to make it a bit more useful.</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">enum</span> <span class="n">Option</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="lineno">2</span>         <span class="n">Some</span><span class="p">(</span><span class="n">T</span><span class="p">),</span>
+<span class="lineno">3</span>         <span class="n">None</span>
+<span class="lineno">4</span>     <span class="p">};</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              16/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>No Nulls!</h1></header>
+            
+            
+            <section><p>Rust doesn't allow us to use Nulls at all; they're a common source of frustration and error in languages that have them.</p>
+<p>Instead, we use the Option type, as we've defined it (it's also a built-in, so real Rust code doesn't need to bother defining it)</p>
+<div class="highlight"><pre><span class="lineno"> 1</span>     <span class="k">fn</span> <span class="n">safe_divide</span><span class="p">(</span><span class="n">a</span><span class="o">:</span> <span class="k">int</span><span class="p">,</span> <span class="n">b</span><span class="o">:</span> <span class="k">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Option</span><span class="o">&lt;</span><span class="k">f64</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="lineno"> 2</span>         <span class="k">if</span> <span class="n">b</span> <span class="o">==</span> <span class="m">0</span> <span class="p">{</span>
+<span class="lineno"> 3</span>             <span class="n">None</span>
+<span class="lineno"> 4</span>         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+<span class="lineno"> 5</span>             <span class="n">Some</span><span class="p">(</span><span class="n">a</span> <span class="k">as</span> <span class="k">f64</span> <span class="o">/</span> <span class="n">b</span> <span class="k">as</span> <span class="k">f64</span><span class="p">)</span>
+<span class="lineno"> 6</span>         <span class="p">}</span>
+<span class="lineno"> 7</span>     <span class="p">}</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span>     <span class="c1">//We can then unpack them with pattern matching</span>
+<span class="lineno">10</span>     <span class="k">match</span> <span class="n">safe_divide</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span> <span class="p">{</span>
+<span class="lineno">11</span>         <span class="n">Some</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="s">&quot;Successfully divided&quot;</span><span class="p">,</span>
+<span class="lineno">12</span>         <span class="n">None</span> <span class="o">=&gt;</span> <span class="s">&quot;Divide by zero&quot;</span>
+<span class="lineno">13</span>     <span class="p">};</span>
+</pre></div>
+</section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              17/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Functional fun</h1></header>
+            
+            
+            <section><p>So, let's do the classic of Functional Programming.
+Define a list type.</p>
+<div class="highlight"><pre><span class="lineno">1</span>     <span class="k">enum</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="lineno">2</span>         <span class="n">Node</span><span class="p">(</span><span class="n">T</span><span class="p">,</span><span class="o">~</span><span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">),</span>
+<span class="lineno">3</span>         <span class="n">Terminal</span>
+<span class="lineno">4</span>     <span class="p">};</span>
+</pre></div>
+
+<p>It's recursively defined as data plus an owned pointer to itself, or to a terminal</p>
+<p><img alt="catlist" src="file:///home/tony/Projects/a-dabblers-adventures-in-rust/images/catlist.jpg" /></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              18/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Functional fun</h1></header>
+            
+            
+            <section><p>So, now we can define a list!</p>
+<div class="highlight"><pre><span class="lineno"> 1</span>     <span class="k">let</span> <span class="n">list</span> <span class="o">=</span> <span class="o">~</span><span class="n">Node</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="o">~</span><span class="n">Node</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="o">~</span><span class="n">Node</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="o">~</span><span class="n">Terminal</span><span class="p">)));</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span>     <span class="k">fn</span> <span class="n">double_list</span><span class="p">(</span><span class="n">item</span><span class="o">:</span> <span class="o">&amp;</span><span class="n">List</span><span class="o">&lt;</span><span class="k">uint</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="o">~</span><span class="n">List</span><span class="o">&lt;</span><span class="k">uint</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="lineno"> 4</span>         <span class="k">match</span> <span class="n">item</span> <span class="p">{</span>
+<span class="lineno"> 5</span>             <span class="o">&amp;</span><span class="n">Node</span><span class="p">(</span><span class="k">ref</span> <span class="n">value</span><span class="p">,</span> <span class="k">ref</span> <span class="n">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="lineno"> 6</span>                 <span class="o">~</span><span class="n">Node</span><span class="p">(</span><span class="n">value</span><span class="o">*</span><span class="m">2</span><span class="p">,</span> <span class="n">double_list</span><span class="p">(</span><span class="o">*</span><span class="n">next</span><span class="p">))</span>
+<span class="lineno"> 7</span>             <span class="p">},</span>
+<span class="lineno"> 8</span>             <span class="o">&amp;</span><span class="n">Terminal</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="lineno"> 9</span>                 <span class="o">~</span><span class="n">Terminal</span>
+<span class="lineno">10</span>             <span class="p">}</span>
+<span class="lineno">11</span>         <span class="p">}</span>
+<span class="lineno">12</span>     <span class="p">}</span>
+<span class="lineno">13</span>     <span class="k">let</span> <span class="n">squared</span> <span class="o">=</span> <span class="n">double_list</span><span class="p">(</span><span class="n">list</span><span class="p">);</span>
+</pre></div>
+
+<p>This function borrows the original list, so the original remains useful. In the pattern match, we have to specify that we're borrowing rather than moving once again, otherwise no compile.</p>
+<p>We then have to dereference the borrowed pointer with a * otherwise it's a double borrow</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              19/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide has_code">
+          <div class="inner">
+            
+            <header><h1>Functional fun</h1></header>
+            
+            
+            <section><p>But why would we hardcode what this can do? We can take a first class function, and also make it generic across all types!</p>
+<div class="highlight"><pre><span class="lineno"> 1</span>     <span class="k">fn</span> <span class="n">map</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="o">&gt;</span><span class="p">(</span><span class="n">item</span><span class="o">:</span> <span class="o">&amp;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">action</span><span class="o">:</span> <span class="o">|&amp;</span><span class="n">T</span><span class="o">|</span> <span class="o">-&gt;</span> <span class="n">U</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="o">~</span><span class="n">List</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="lineno"> 2</span>         <span class="k">match</span> <span class="n">item</span> <span class="p">{</span>
+<span class="lineno"> 3</span>             <span class="o">&amp;</span><span class="n">Node</span><span class="p">(</span><span class="k">ref</span> <span class="n">value</span><span class="p">,</span> <span class="k">ref</span> <span class="n">next</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="lineno"> 4</span>                 <span class="o">~</span><span class="n">Node</span><span class="p">(</span><span class="n">action</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">map</span><span class="p">(</span><span class="o">*</span><span class="n">next</span><span class="p">,</span> <span class="n">action</span><span class="p">))</span>
+<span class="lineno"> 5</span>             <span class="p">},</span>
+<span class="lineno"> 6</span>             <span class="o">&amp;</span><span class="n">Terminal</span> <span class="o">=&gt;</span> <span class="p">{</span>
+<span class="lineno"> 7</span>                 <span class="o">~</span><span class="n">Terminal</span>
+<span class="lineno"> 8</span>             <span class="p">}</span>
+<span class="lineno"> 9</span>         <span class="p">}</span>
+<span class="lineno">10</span>     <span class="p">}</span>
+<span class="lineno">11</span> 
+<span class="lineno">12</span>     <span class="c1">//And now we can use it as normal</span>
+<span class="lineno">13</span>     <span class="k">let</span> <span class="n">squared</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">list</span><span class="p">,</span> <span class="o">|</span><span class="n">value</span><span class="o">:</span> <span class="o">&amp;</span><span class="k">uint</span><span class="o">|</span> <span class="p">{</span> <span class="o">*</span><span class="n">value</span> <span class="o">*</span> <span class="o">*</span><span class="n">value</span> <span class="p">});</span>
+</pre></div>
+
+<p>Of course, Rust's standard library has already defined all of these useful things.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              20/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>What I've not covered</h1></header>
+            
+            
+            <section><p>Rust has a lot of other awesome features that I barely understand.</p>
+<ul>
+<li>Defining lifetimes, so you can return borrowed pointers</li>
+<li>Traits, for object oriented programming, and attaching methods to any type you want.</li>
+<li>Traits as predicates on types</li>
+<li>Concurrency</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              21/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: applied.md -->
+      <div class="slide-wrapper">
+        <div class="slide">
+          <div class="inner">
+            
+            <header><h1>Any questions?</h1></header>
+            
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="applied.md">applied.md</a>
+            </aside>
+            
+            <aside class="page_number">
+              22/22
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+  <div id="toc" class="sidebar hidden">
+    <h2>Table of Contents</h2>
+    <table>
+      <caption>Table of Contents</caption>
+      
+      <tr id="toc-row-1">
+        <th><a href="#slide1">A Dabbler's Adventures in Rust</a></th>
+        <td><a href="#slide1">1</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-2">
+        <th><a href="#slide2">What is Rust?</a></th>
+        <td><a href="#slide2">2</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-3">
+        <th><a href="#slide3">Where can I get it?</a></th>
+        <td><a href="#slide3">3</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-4">
+        <th><a href="#slide4">The traditional Hello World</a></th>
+        <td><a href="#slide4">4</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-5">
+        <th><a href="#slide5">The basics</a></th>
+        <td><a href="#slide5">5</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-6">
+        <th><a href="#slide6">No automatic type casts</a></th>
+        <td><a href="#slide6">6</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-7">
+        <th><a href="#slide7">Immutability</a></th>
+        <td><a href="#slide7">7</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-8">
+        <th><a href="#slide8">Expressions</a></th>
+        <td><a href="#slide8">8</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-9">
+        <th><a href="#slide9">Functions</a></th>
+        <td><a href="#slide9">9</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-10">
+        <th><a href="#slide10">Functions</a></th>
+        <td><a href="#slide10">10</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-11">
+        <th><a href="#slide11">Generics</a></th>
+        <td><a href="#slide11">11</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-12">
+        <th><a href="#slide12">Generics</a></th>
+        <td><a href="#slide12">12</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-13">
+        <th><a href="#slide13">Basic data types</a></th>
+        <td><a href="#slide13">13</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-14">
+        <th><a href="#slide14">Pointers</a></th>
+        <td><a href="#slide14">14</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-15">
+        <th><a href="#slide15">Pointers</a></th>
+        <td><a href="#slide15">15</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-16">
+        <th><a href="#slide16">Algebraic data types</a></th>
+        <td><a href="#slide16">16</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-17">
+        <th><a href="#slide17">No Nulls!</a></th>
+        <td><a href="#slide17">17</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-18">
+        <th><a href="#slide18">Functional fun</a></th>
+        <td><a href="#slide18">18</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-19">
+        <th><a href="#slide19">Functional fun</a></th>
+        <td><a href="#slide19">19</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-20">
+        <th><a href="#slide20">Functional fun</a></th>
+        <td><a href="#slide20">20</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-21">
+        <th><a href="#slide21">What I've not covered</a></th>
+        <td><a href="#slide21">21</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-22">
+        <th><a href="#slide22">Any questions?</a></th>
+        <td><a href="#slide22">22</a></td>
+      </tr>
+      
+      
+    </table>
+  </div>
+  
+  <div id="help" class="sidebar hidden">
+    <h2>Help</h2>
+    <table>
+      <caption>Help</caption>
+      <tr>
+        <th>Table of Contents</th>
+        <td>t</td>
+      </tr>
+      <tr>
+        <th>Exposé</th>
+        <td>ESC</td>
+      </tr>
+      <tr>
+        <th>Full screen slides</th>
+        <td>e</td>
+      </tr>
+      <tr>
+        <th>Presenter View</th>
+        <td>p</td>
+      </tr>
+      <tr>
+        <th>Source Files</th>
+        <td>s</td>
+      </tr>
+      <tr>
+        <th>Slide Numbers</th>
+        <td>n</td>
+      </tr>
+      <tr>
+        <th>Toggle screen blanking</th>
+        <td>b</td>
+      </tr>
+      <tr>
+        <th>Show/hide slide context</th>
+        <td>c</td>
+      </tr>
+      <tr>
+        <th>Notes</th>
+        <td>2</td>
+      </tr>
+      <tr>
+        <th>Help</th>
+        <td>h</td>
+      </tr>
+    </table>
+  </div>
+  <script>main()</script>
+</body>
+</html>
