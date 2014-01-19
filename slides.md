@@ -70,7 +70,7 @@ As Rust is designed with concurrency as a goal, everything's immutable by defaul
 
 !!!basics.rs:3-1
 
-We have to explicitly make thing mutable if we want to change their value.
+We have to explicitly make things mutable if we want to change their value.
 
 !!!basics.rs:3-2
 
@@ -162,7 +162,7 @@ We can also create borrowed pointers, which can only legally exist while the ori
 
 # Algebraic data types
 
-Algebraic data types are one of the must useful features in Rust.
+Algebraic data types are one of the most useful features in Rust.
 
 !!!functional.rs:1-1
 
