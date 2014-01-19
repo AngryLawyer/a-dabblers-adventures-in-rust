@@ -189,7 +189,7 @@ Define a list type.
 
 !!!functional.rs:tut1
 
-It's recursively defined as data plus an owned pointer to itself, or to a terminal
+It's recursively defined as data plus an owned pointer to another List, or as a terminal
 
 ![catlist](images/catlist.jpg)
 
