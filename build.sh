@@ -17,7 +17,7 @@ then
     exit 1
 fi
 
-landslide config.cfg -i
+landslide config.cfg
 
 if [ $? -ne 0 ]
 then

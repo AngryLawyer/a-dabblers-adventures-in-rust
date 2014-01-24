@@ -11,12 +11,12 @@
 # What is Rust?
 ## (Baby don't hurt me, don't hurt me, no more)
 
-PROVIDE PICTURE
-
 * New programming language developed by Mozilla
 * Multi-paradigm. Functional, imperative, object-oriented, whenever it makes sense.
 * Low-level. Targets the same problem-space as C and C++
 * Safe. Lovely, lovely types and pointer lifetimes guard against a lot of errors.
+
+![rust](images/logo.png)
 
 ---
 
@@ -25,6 +25,7 @@ PROVIDE PICTURE
 * Prebuilt binaries are available at <http://www.rust-lang.org/>
 * Source code is available from GitHub <https://github.com/mozilla/rust>
 * You can also use Aptitude to install nightly builds <https://launchpad.net/~hansjorg/+archive/rust>
+* The code examples here should compile cleanly against 0.9, but are tested against the head of the Master branch of the project, so if you're going to follow along, you might find slight differences.
 
 ---
 
@@ -69,7 +70,7 @@ As Rust is designed with concurrency as a goal, everything's immutable by defaul
 
 !!!basics.rs:3-1
 
-We have to explicitly make thing mutable if we want to change their value.
+We have to explicitly make things mutable if we want to change their value.
 
 !!!basics.rs:3-2
 
@@ -143,6 +144,8 @@ Pointers are a key part of understanding Rust. By default, everything goes on th
 
 !!!pointers.rs:1
 
+![beanbag](images/cat-jumps-into-bean-bag.gif)
+
 ---
 
 # Pointers
@@ -159,7 +162,7 @@ We can also create borrowed pointers, which can only legally exist while the ori
 
 # Algebraic data types
 
-Algebraic data types are one of the must useful features in Rust.
+Algebraic data types are one of the most useful features in Rust.
 
 !!!functional.rs:1-1
 
@@ -186,7 +189,9 @@ Define a list type.
 
 !!!functional.rs:tut1
 
-It's recursively defined as data plus an owned pointer to itself, or to a terminal
+It's recursively defined as data plus an owned pointer to another List, or as a terminal
+
+![catlist](images/catlist.jpg)
 
 ---
 
